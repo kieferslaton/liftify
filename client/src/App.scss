@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700&display=swap');
+$accent: #ba1200;
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+.loaded-day{
+  font-weight: bold;
+  color: $accent;
+  cursor: pointer;
+}
+
+.set{
+  color: $accent;
+  font-weight: bold;
+  height: 40px;
+  width: 40px;
+  padding-top: 6px;
+  border-radius: 100px;
+  border: 2px solid $accent;
+  cursor: pointer;
+}
+
+.set.disabled{
+  pointer-events: none;
+}
+
+.set.complete{
+  color: white;
+  background-color: $accent;
+}
+
+.exercise-card{
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.exercise-card:last-of-type{
+  border-bottom: none;
+}
+
+.navbar{
+  background-color: $accent;
+}
+
+.nav-button{
+  background: transparent;
+  border: 0;
+  height: 40px;
+  border-radius: 0;
+  border-right: 2px solid white;
+  font-weight: bold;
+  &:hover{
+    background-color: white;
+    color: $accent;
+    border-right: 2px solid white;
+  }
+  &:active{
+    outline: none;
+  }
+  &:focus{
+    background-color: white;
+    color: $accent;
+    border-right: 2px solid white;
+    outline: none;
+  }
+  &:last-of-type{
+    border: 0;
+  }
+}
+
+.accent{
+  border: 1px solid $accent;
+  color: $accent;
+  background-color: white;
+  &:hover{
+    background-color: $accent;
+    color: white;
+    border: 1px solid $accent;
+    outline: none;
+  }
+}
+
+.accent-bg{
+  background-color: $accent;
+  color: white;
+  border: 1px solid $accent;
+}
