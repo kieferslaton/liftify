@@ -361,7 +361,15 @@ const PlanForm = ( { user, passUpPlan }) => {
             })
         }
 
-        console.log(plan.days)
+        axios.post('/plans/add', {
+            name: 'Default',
+            startDate: plan.startDate,
+            user: plan.user,
+            days: plan.days
+        }).then(res => {
+            console.log(res.data)
+            passUpPlan(res.data)
+        })
 
     }
 
