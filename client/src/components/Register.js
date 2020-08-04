@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { Form, Button} from 'react-bootstrap'
+import { Form, Button, Spinner} from 'react-bootstrap'
 import axios from 'axios'
 
 const Register = ({handleSuccessfulLogin}) => {
@@ -8,6 +8,7 @@ const Register = ({handleSuccessfulLogin}) => {
     const [password2, setPassword2] = useState()
     const [usernameError, setUsernameError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const [users, setUsers] = useState([]) 
     
@@ -19,6 +20,7 @@ const Register = ({handleSuccessfulLogin}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setLoading(true)
         if(password !== password2){
             setPasswordError(true)
             return
@@ -31,6 +33,7 @@ const Register = ({handleSuccessfulLogin}) => {
         }).then(res => {
             console.log(res.data)
             handleSuccessfulLogin(res.data)
+            setLoading(false)
         }).catch(err => console.log(err.status))
     }
 }
@@ -59,7 +62,7 @@ const Register = ({handleSuccessfulLogin}) => {
                 <Form.Text className={`${passwordError ? '' : 'd-none'} text-muted`}>Passwords don't match. </Form.Text>
             </Form.Group>
             <Button className="accent" type="submit">
-                Register
+                {loading ? <Spinner animation="border" size="sm" as="span" role="status" /> : 'Register'}
             </Button>
         </Form>
     )

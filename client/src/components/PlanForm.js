@@ -11,19 +11,23 @@ const PlanForm = ( { user, passUpPlan }) => {
 
     const handleCheckToggle = (val) => {
         if (!days.includes(val)){
+            if(days.length < 4){
             setDays([...days, val])
+            } else {
+                let newDays = [days[0], days[1], days[2]]
+                newDays.push(val)
+                setDays(newDays)
+            }
         } else {
             setDays(days.filter(day => day !== val))
         }
-
-        console.log(days)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(benchVal, squatVal, date, days)
         let plan = {}
-        plan.startDate = date
+        plan.startDate = date.startOfWeek()
         plan.user = user.username
         plan.days = []
 
@@ -382,15 +386,15 @@ const PlanForm = ( { user, passUpPlan }) => {
             </Form.Group>
             <Form.Group>
                 <Form.Label>Days of Week (Select 4)</Form.Label>
-                <Form.Check type="checkbox" label="Sunday" value='0' onClick={(e) => handleCheckToggle(e.target.value)} />
-                <Form.Check type="checkbox" label="Monday" value='1' onClick={(e) => handleCheckToggle(e.target.value)} />
-                <Form.Check type="checkbox" label="Tuesday" value='2' onClick={(e) => handleCheckToggle(e.target.value)} />
-                <Form.Check type="checkbox" label="Wednesday" value='3' onClick={(e) => handleCheckToggle(e.target.value)} />
-                <Form.Check type="checkbox" label="Thursday" value='4' onClick={(e) => handleCheckToggle(e.target.value)} />
-                <Form.Check type="checkbox" label="Friday" value='5' onClick={(e) => handleCheckToggle(e.target.value)} />
-                <Form.Check type="checkbox" label="Saturday" value='6' onClick={(e) => handleCheckToggle(e.target.value)} />
+                <Form.Check type="checkbox" checked={days.includes('0')} label="Sunday" value='0' onClick={(e) => handleCheckToggle(e.target.value)} />
+                <Form.Check type="checkbox" checked={days.includes('1')} label="Monday" value='1' onClick={(e) => handleCheckToggle(e.target.value)} />
+                <Form.Check type="checkbox" checked={days.includes('2')} label="Tuesday" value='2' onClick={(e) => handleCheckToggle(e.target.value)} />
+                <Form.Check type="checkbox" checked={days.includes('3')} label="Wednesday" value='3' onClick={(e) => handleCheckToggle(e.target.value)} />
+                <Form.Check type="checkbox" checked={days.includes('4')} label="Thursday" value='4' onClick={(e) => handleCheckToggle(e.target.value)} />
+                <Form.Check type="checkbox" checked={days.includes('5')} label="Friday" value='5' onClick={(e) => handleCheckToggle(e.target.value)} />
+                <Form.Check type="checkbox" checked={days.includes('6')} label="Saturday" value='6' onClick={(e) => handleCheckToggle(e.target.value)} />
             </Form.Group>
-            <Button type="submit">Make My Plan!</Button>
+            <Button type="submit" className="accent">Make My Plan!</Button>
         </Form>
     )
 }

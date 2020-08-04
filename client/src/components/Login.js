@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
-import { Form, Button} from 'react-bootstrap'
+import { Form, Button, Spinner} from 'react-bootstrap'
 import axios from 'axios'
 
 const Login = ({handleSuccessfulLogin}) => {
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setLoading(true)
         axios.post('/users/login', {
             username: username,
             password: password
         }).then(res => {
             console.log(res.data)
             handleSuccessfulLogin(res.data)
+            setLoading(false)
         }).catch(err => console.log(err.status))
     }
 
@@ -28,7 +31,7 @@ const Login = ({handleSuccessfulLogin}) => {
                 <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </Form.Group>
             <Button className="accent" type="submit">
-                Log In
+            {loading ? <Spinner animation="border" size="sm" as="span" role="status" /> : 'Log In'}
             </Button>
         </Form>
     )

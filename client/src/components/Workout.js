@@ -84,7 +84,9 @@ const Workout = ({user}) => {
             {renderWeeks()}
             </Container>}
             </>:
-            <PlanForm user={user} passUpPlan={passUpPlan} />}
+            <Container className="my-3">
+            <PlanForm user={user} passUpPlan={passUpPlan} />
+            </Container>}
         </div>
     )
 }
