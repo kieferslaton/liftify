@@ -27,7 +27,7 @@ const Login = ({handleSuccessfulLogin}) => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </Form.Group>
-            <Button type="submit">
+            <Button className="accent" type="submit">
                 Log In
             </Button>
         </Form>

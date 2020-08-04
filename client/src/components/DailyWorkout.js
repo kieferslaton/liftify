@@ -8,6 +8,7 @@ const DailyWorkout = ({closeDailyWorkout, workoutDay, plan, refreshPlan}) => {
     const dailyWorkout = plan.days.find(day => day.date === workoutDay)
 
     return (
+        <>
         <Container>
         <Row className="my-3">
             <Col xs={1}><FaChevronLeft style={{cursor: 'pointer'}} onClick={closeDailyWorkout}/></Col>
@@ -18,6 +19,7 @@ const DailyWorkout = ({closeDailyWorkout, workoutDay, plan, refreshPlan}) => {
             <Exercise key={index} workoutDay={workoutDay} name={exercise.name} plan={plan} refreshPlan={refreshPlan} />
         ))}
         </Container>
+        </>
     )
 }
 export default DailyWorkout

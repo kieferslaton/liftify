@@ -62,10 +62,10 @@ const Workout = ({user}) => {
             for (let j = 0; j < 7; j++){
                 let workoutDay = moment(sundayOfWeek).add(j, 'days').format('YYYY-MM-DD')
                 plan.days.filter(day => day.date === workoutDay).length > 0 ? 
-                weekRow.push(<Col key={workoutDay} className="loaded-day" onClick = {() => {
+                weekRow.push(<Col key={workoutDay} className="loaded-day m-0 p-0" onClick = {() => {
                     setWorkoutDay(workoutDay)
-                }}>{moment(workoutDay).format('MM/DD')}</Col>) : 
-                weekRow.push(<Col key={workoutDay}>{moment(workoutDay).format('MM/DD')}</Col>)
+                }}>{moment(workoutDay).format('M/D')}</Col>) : 
+                weekRow.push(<Col className="mx-0 px-0" key={workoutDay}>{moment(workoutDay).format('M/D')}</Col>)
             }
             rows.push(<Row key={`Row ${i}`} className="my-3 justify-content-center text-center">{weekRow}</Row>)
             weekRow = []
@@ -74,14 +74,18 @@ const Workout = ({user}) => {
     }
 
     return (
-        <>{plan?
+        <div style={{maxWidth: 800, width: "100%", margin: "0 auto"}}>{plan?
             <>
             {workoutDay ?
-            <DailyWorkout workoutDay={workoutDay} closeDailyWorkout={closeDailyWorkout} plan={plan} refreshPlan={refreshPlan} /> : 
-            renderWeeks()}
+            <Container className="m-0 p-0" style={{maxWidth: "100%", margin: "0 auto"}}>
+            <DailyWorkout workoutDay={workoutDay} closeDailyWorkout={closeDailyWorkout} plan={plan} refreshPlan={refreshPlan} />
+            </Container> : 
+            <Container>
+            {renderWeeks()}
+            </Container>}
             </>:
             <PlanForm user={user} passUpPlan={passUpPlan} />}
-        </>
+        </div>
     )
 }
 
