@@ -27,7 +27,7 @@ const PlanForm = ( { user, passUpPlan }) => {
         e.preventDefault()
         console.log(benchVal, squatVal, date, days)
         let plan = {}
-        plan.startDate = date.startOfWeek()
+        plan.startDate =  moment(date).startOfWeek()
         plan.user = user.username
         plan.days = []
 
