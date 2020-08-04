@@ -27,14 +27,16 @@ const PlanForm = ( { user, passUpPlan }) => {
         e.preventDefault()
         console.log(benchVal, squatVal, date, days)
         let plan = {}
-        plan.startDate =  moment(date).startOfWeek()
+        plan.startDate =  moment(date).startOf('week')
         plan.user = user.username
         plan.days = []
+
+        console.log(plan.startDate)
 
         //First Mesocycle
         let firstCycleWeeks = 5
         for (let i = 0; i < firstCycleWeeks; i++){
-            const startOfWeek = moment(date).add(i*7, 'days')
+            const startOfWeek = moment(plan.startDate).add(i*7, 'days')
             days.forEach((day, index) => {
                 let name
                 let number
@@ -359,15 +361,8 @@ const PlanForm = ( { user, passUpPlan }) => {
             })
         }
 
-        axios.post('/plans/add', {
-            name: 'Default',
-            startDate: plan.startDate,
-            user: plan.user,
-            days: plan.days
-        }).then(res => {
-            console.log(res.data)
-            passUpPlan(res.data)
-        })
+        console.log(plan.days)
+
     }
 
     return(
